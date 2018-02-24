@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!($_SESSION["inputARR"]) && !($_POST["qtype"])) {
+if (!($_SESSION["inputARR"]) && !(isset($_POST["qtype"]))) {
 	$_SESSION["index"] = 0;
 	$_SESSION["inputARR"] = array();
 	require 'reader.php';
@@ -33,7 +33,7 @@ $currQuestion = $_SESSION["qHolder"][($_SESSION["index"])];
 		</script>
 	</head>
 	<body>
-		<form method="post" id="formhead" action="/forward.php">
+		<form method="post" id="formhead" action="forward.php">
 			<input type="submit" value="<--" onclick="changeDir(0)">
 			<input type="submit" value="-->" onclick="changeDir(1)">
 			<div id = "qBox">
