@@ -1,5 +1,6 @@
 <?php
 $questionArray = array();
+echo "Yeah !";
 $index = 0;
 $currObj = array("text"=>"blank", "type"=>"blank", "a1"=>"", "a2"=>"", "a3"=>"","a4"=>"","a5"=>"");
 $questionFile = fopen("questiontxt.txt", "r");	
