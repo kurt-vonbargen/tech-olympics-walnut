@@ -1,41 +1,27 @@
 <?php
 session_start();
-if (!($_SESSION["inputARR"]) && !(isset($_POST["qtype"]))) {
+if (!($_SESSION["inputARR"]) && !($_POST["qtype"])) {
 	$_SESSION["index"] = 0;
 	$_SESSION["inputARR"] = array();
 	require 'reader.php';
 	$_SESSION["qHolder"] = $questionArray;
-} else {
+} else if ($_POST["submit"] === "-->") 
 	$_SESSION["index"]++;
-	$lastInput = $_POST["qtype"] . $_POST["value"];
-	$_SESSION["inputARR"][] = $lastInput;
-}
+} else {
+	$_SESSION["index"]--;
+} 
+
 $currQuestion = $_SESSION["qHolder"][($_SESSION["index"])];
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<script>
-			function changeDir(num) {
-				switch (num) {
-					case 0:
-						var actionStr = "/forward.php";
-						break;
-					case 1:
-						var actionStr =	 "/backward.php";
-						break;
-					default:
-						break;
-					}
-				document.getElementById("formhead").setAttribute(actionStr);
-			}
-		</script>
 	</head>
 	<body>
-		<form method="post" id="formhead" action="forward.php">
-			<input type="submit" value="<--" onclick="changeDir(0)">
-			<input type="submit" value="-->" onclick="changeDir(1)">
+		<form method="post" id="formhead" action="/forward.php">
+			<input type="submit" name="submit" value="<--">
+			<input type="submit" name="submit" value="-->">
 			<div id = "qBox">
 			<h3><?php echo $currQuestion["text"];?><br>This is question #<?php echo $_SESSION["index"];?></h3>
 		</div>
