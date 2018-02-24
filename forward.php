@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!($_SESSION["inputARR"]) && $_POST["value"]) {
+if (!($_SESSION["inputARR"]) && $_POST["qtype"]) {
 	$_SESSION["index"] = 0;
 	$_SESSION["inputARR"] = array();
 	require 'reader.php';
